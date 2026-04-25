@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="$(arg robot_name)">
+  <xacro:arg name="robot_name" default="cortado" />
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="safety_distance" default="0.03" />
+  <xacro:arg name="camera_mast" default="2" />
+  <xacro:arg name="wrist_camera" default="true" />
+  <xacro:arg name="flip_gripper" default="true" />
+
+  <xacro:include filename="../urdf/cortado.urdf.xacro" />
+
+  <xacro:cortado
+    prefix="$(arg prefix)"
+    safety_distance="$(arg safety_distance)"
+    camera_mast="$(arg camera_mast)"
+    wrist_camera="$(arg wrist_camera)"
+    flip_gripper="$(arg flip_gripper)" />
+</robot>

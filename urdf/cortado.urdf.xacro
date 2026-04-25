@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cortado_description">
+  <xacro:include filename="cortado_cart.urdf.xacro" />
+  <xacro:include filename="fr3_robotiq_2f_85.urdf.xacro" />
+
+  <xacro:macro name="cortado" params="
+    prefix:=''
+    safety_distance:=0.03
+    camera_mast:=2
+    wrist_camera:=true
+    flip_gripper:=true">
+    <xacro:cortado_cart prefix="${prefix}" camera_mast="${camera_mast}" />
+
+    <xacro:fr3_robotiq_2f_85
+      prefix="${prefix}"
+      safety_distance="${safety_distance}"
+      wrist_camera="${wrist_camera}"
+      flip_gripper="${flip_gripper}" />
+  </xacro:macro>
+</robot>

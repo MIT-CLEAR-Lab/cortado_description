@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3_robotiq">
+
+  <xacro:include filename="$(find franka_description)/robots/common/franka_robot.xacro" />
+  <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_macro.xacro" />
+  <xacro:include filename="$(find zed_description)/urdf/zed_macro.urdf.xacro" />
+
+  <xacro:macro name="fr3_robotiq_2f_85" params="
+    prefix:=''
+    safety_distance:=0.03
+    wrist_camera:=true
+    flip_gripper:=true">
+  <xacro:property name="pp" value="${prefix + '_' if prefix else ''}" />
+
+  <xacro:franka_robot
+    robot_type="fr3"
+    joint_limits="${xacro.load_yaml('$(find franka_description)/robots/fr3/joint_limits.yaml')}"
+    inertials="${xacro.load_yaml('$(find franka_description)/robots/fr3/inertials.yaml')}"
+    kinematics="${xacro.load_yaml('$(find franka_description)/robots/fr3/kinematics.yaml')}"
+    accelerometer_config="${xacro.load_yaml('$(find franka_description)/robots/fr3/accelerometers.yaml')}"
+    dynamics="${xacro.load_yaml('$(find franka_description)/robots/fr3/dynamics.yaml')}"
+    gazebo="false"
+    hand="false"
+    ee_id="none"
+    special_connection=""
+    xyz_ee="0 0 0"
+    rpy_ee="0 0 0"
+    tcp_xyz="0 0 0.1034"
+    tcp_rpy="0 0 0"
+    safety_distance="${safety_distance}"
+    with_sc="false"
+    ros2_control="false"
+    robot_ip=""
+    use_fake_hardware="false"
+    fake_sensor_commands="false"
+    gazebo_effort="false"
+    no_prefix="false"
+    arm_prefix="${pp}"
+    description_pkg="franka_description"
+    connected_to="${pp}franka_base_mount" />
+
+  <link name="${pp}coupling_link">
+    <inertial>
+      <!--NOTE(nickswalker(4-02-26): Analysis via onshape assuming aluminum 7075.-->
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.129" />
+      <inertia ixx="5.442e-5" ixy="0" ixz="0" iyy="1.019e-4" iyz="0" izz="5.108e-5" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotiq_2f_85_gripper_visualization/meshes/visual/coupling_grp_cpl_062.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0065" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.038" length="0.018" />
+      </geometry>
+    </collision>
+  </link>
+  <xacro:if value="${flip_gripper}">
+    <joint name="${pp}fr3_tool_coupling_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 3.14" />
+      <parent link="${pp}fr3_link8" />
+      <child link="${pp}coupling_link" />
+    </joint>
+  </xacro:if>
+  <xacro:unless value="${flip_gripper}">
+    <joint name="${pp}fr3_tool_coupling_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${pp}fr3_link8" />
+      <child link="${pp}coupling_link" />
+    </joint>
+  </xacro:unless>
+
+  <xacro:if value="${wrist_camera}">
+    <link name="${pp}camera_mount_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.045" />
+        <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="./meshes/hand_camera_mount.stl"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.85 0.85 0.85 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="./meshes/hand_camera_mount_collision.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${pp}camera_mount_joint" type="fixed">
+      <origin xyz="-0.04 0 -0.0095" rpy="0 0 3.14" />
+      <parent link="${pp}fr3_link8" />
+      <child link="${pp}camera_mount_link" />
+    </joint>
+
+    <xacro:zed_camera name="${pp}zedm" model="zedm">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:zed_camera>
+    <joint name="${pp}camera_mount_to_zedm_joint" type="fixed">
+      <origin xyz="0.03 0.0 0.0075" rpy="0 -1.22 3.14" />
+      <parent link="${pp}camera_mount_link" />
+      <child link="${pp}zedm_camera_link" />
+    </joint>
+  </xacro:if>
+
+  <joint name="${pp}fr3_tool_gripper_mount_joint" type="fixed">
+    <origin xyz="0 0 .0139" rpy="0 0 0" />
+    <parent link="${pp}coupling_link" />
+    <child link="${pp}base_link" />
+  </joint>
+
+  <xacro:robotiq_arg2f_85
+    prefix="${pp}"
+    transmission_hw_interface="hardware_interface/EffortJointInterface" />
+  </xacro:macro>
+
+</robot>

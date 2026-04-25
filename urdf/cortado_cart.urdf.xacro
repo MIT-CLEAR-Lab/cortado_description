@@ -1,0 +1,3280 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cortado_cart_description">
+    <xacro:macro name="cortado_cart" params="prefix:='' camera_mast:=2">
+        <xacro:property name="pp" value="${prefix + '_' if prefix else ''}" />
+        <material name="vention_aluminium_blue">
+            <color rgba="0.337255 0.533333 0.756863 1" />
+        </material>
+        <material name="dark_gray_plastic">
+            <color rgba="0.156863 0.156863 0.156863 1" />
+        </material>
+        <link name="${pp}camera_corner_mount">
+            <inertial>
+                <mass value="0.274343" />
+                <origin xyz="-0.00889167 0.000752118 0.044309" rpy="0 0 0" />
+                <inertia ixx="0.000600595" ixy="-4.07754e-05" ixz="4.06403e-05" iyy="0.000397762" iyz="-8.45438e-05" izz="0.000397548" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.029 0.2025 0.0451603" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/camera_corner_mount.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0197499999 0.013999998 0.0305801657" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0635 0.107 0.107" />
+                </geometry>
+            </collision>
+        </link>
+        <xacro:if value="${int(camera_mast) >= 1}">
+        <link name="${pp}camera_mast">
+            <inertial>
+                <mass value="0.201444" />
+                <origin xyz="0.149646 0 0" rpy="0 0 0" />
+                <inertia ixx="1.86872e-05" ixy="0" ixz="0" iyy="0.0026139" iyz="0" izz="0.0026139" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.036 0.200134 0.00244588" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/camera_mast.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.1775 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.355 0.057 0.057" />
+                </geometry>
+            </collision>
+        </link>
+        </xacro:if>
+        <xacro:if value="${int(camera_mast) >= 2}">
+        <link name="${pp}camera_mast_extension">
+            <inertial>
+                <mass value="0.166995" />
+                <origin xyz="0.175 0 0" rpy="0 0 0" />
+                <inertia ixx="4.69674e-06" ixy="0" ixz="0" iyy="0.00170709" iyz="0" izz="0.00170709" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.391 0.200134 0.00244588" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/camera_mast_extension.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.175 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.35 0.015 0.015" />
+                </geometry>
+            </collision>
+        </link>
+        </xacro:if>
+        <link name="${pp}estop_bracket">
+            <inertial>
+                <mass value="0.0422873" />
+                <origin xyz="2.76583e-08 -0.0289536 0.019122" rpy="0 0 0" />
+                <inertia ixx="2.49746e-05" ixy="1.31927e-11" ixz="-1.56979e-11" iyy="4.9953e-05" iyz="6.07513e-06" izz="4.16834e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0.1125 -0.0225" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/estop_bracket.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.0168749996 0.0345501834" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.082 0.0562499985 0.069100365" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}fan_control_standard_1">
+            <inertial>
+                <mass value="1.68136e-05" />
+                <origin xyz="-0.0235798 -0.356914 -0.00919258" rpy="0 0 0" />
+                <inertia ixx="5.5631e-09" ixy="-8.88331e-14" ixz="-8.2168e-12" iyy="3.06705e-09" iyz="3.65585e-11" izz="3.00612e-09" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.178035 -0.240988 -0.0529" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/control_box.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.200000_0.200000_0.200000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.2 0.2 0.2 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.169751134 -0.241000103 -0.00900128303" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.3805 0.482 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}gl_inet_ax18000_wireless_router_12">
+            <inertial>
+                <mass value="2.01062e-08" />
+                <origin xyz="0.04635 -0.025 -0.0023" rpy="0 0 0" />
+                <inertia ixx="8.06929e-14" ixy="0" ixz="0" iyy="8.06929e-14" iyz="0" izz="1.6085e-13" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0.017" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/gl_inet_ax18000.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.910000_0.910000_0.910000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.91 0.91 0.91 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-2.93132502e-09 -5.66379995e-06 0.0157519591" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.128749991 0.091 0.0365" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_bp_001_0002">
+            <inertial>
+                <mass value="0.141206" />
+                <origin xyz="2.28133e-12 6.13172e-12 0.0229531" rpy="0 0 0" />
+                <inertia ixx="4.85279e-05" ixy="4.53299e-15" ixz="0" iyy="9.49453e-05" iyz="1.45713e-14" izz="8.54955e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_BP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.0250000004" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.08 0.043 0.05" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_bp_001_0002_1">
+            <inertial>
+                <mass value="0.141206" />
+                <origin xyz="2.28133e-12 6.13172e-12 0.0229531" rpy="0 0 0" />
+                <inertia ixx="4.85279e-05" ixy="4.53299e-15" ixz="0" iyy="9.49453e-05" iyz="1.45713e-14" izz="8.54955e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_BP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.0250000004" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.08 0.043 0.05" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_ec_002_0001__2">
+            <inertial>
+                <mass value="0.0158243" />
+                <origin xyz="8.48115e-07 -0.00210811 1.31281e-06" rpy="0 0 0" />
+                <inertia ixx="2.745e-06" ixy="2.33562e-11" ixz="-2.07665e-12" iyy="1.34864e-05" iyz="3.61778e-11" izz="1.08195e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_EC_002_0001__2.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 0.00199890119 1.37276528e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.012 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_ec_002_0001__2_1">
+            <inertial>
+                <mass value="0.0158243" />
+                <origin xyz="8.48115e-07 -0.00210811 1.31281e-06" rpy="0 0 0" />
+                <inertia ixx="2.745e-06" ixy="2.33562e-11" ixz="-2.07665e-12" iyy="1.34864e-05" iyz="3.61778e-11" izz="1.08195e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_EC_002_0001__2.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 0.00199890119 1.37276528e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.012 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_ec_005_0001">
+            <inertial>
+                <mass value="0.0313439" />
+                <origin xyz="4.28179e-07 -0.00216522 6.62788e-07" rpy="0 0 0" />
+                <inertia ixx="2.15279e-05" ixy="2.25903e-11" ixz="-2.08543e-12" iyy="4.29e-05" iyz="3.49915e-11" izz="2.15258e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_EC_005_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 0.00199890119 -1.21915501e-09" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.012 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_ec_005_0001_1">
+            <inertial>
+                <mass value="0.0313439" />
+                <origin xyz="4.28179e-07 -0.00216522 6.62788e-07" rpy="0 0 0" />
+                <inertia ixx="2.15279e-05" ixy="2.25903e-11" ixz="-2.08543e-12" iyy="4.29e-05" iyz="3.49915e-11" izz="2.15258e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/HW_EC_005_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.196078_0.196078_0.196078_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.196078 0.196078 0.196078 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 0.00199890119 -1.21915501e-09" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.012 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_001_0001__2_0">
+            <inertial>
+                <mass value="5.21287e-05" />
+                <origin xyz="0.0797163 2.3578e-11 0.035234" rpy="0 0 0" />
+                <inertia ixx="2.13777e-08" ixy="0" ixz="-4.53612e-10" iyy="1.89836e-07" iyz="0" izz="1.77593e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0799999957 -1.6567449e-06 0.0300021962" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.188 0.03 0.06" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_001_0001__2_0_1">
+            <inertial>
+                <mass value="5.21287e-05" />
+                <origin xyz="0.0797163 2.35779e-11 0.035234" rpy="0 0 0" />
+                <inertia ixx="2.13777e-08" ixy="0" ixz="-4.53612e-10" iyy="1.89836e-07" iyz="0" izz="1.77593e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0799999957 -1.6567449e-06 0.0300021962" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.188 0.03 0.06" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_001_0001__2_0_2">
+            <inertial>
+                <mass value="5.21287e-05" />
+                <origin xyz="0.0797163 2.35779e-11 0.035234" rpy="0 0 0" />
+                <inertia ixx="2.13777e-08" ixy="0" ixz="-4.53612e-10" iyy="1.89836e-07" iyz="0" izz="1.77593e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0799999957 -1.6567449e-06 0.0300021962" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.188 0.03 0.06" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_001_0001__2_0_3">
+            <inertial>
+                <mass value="5.21287e-05" />
+                <origin xyz="0.0797163 2.35779e-11 0.035234" rpy="0 0 0" />
+                <inertia ixx="2.13777e-08" ixy="0" ixz="-4.53612e-10" iyy="1.89836e-07" iyz="0" izz="1.77593e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0799999957 -1.6567449e-06 0.0300021962" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.188 0.03 0.06" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_1">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_2">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_3">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_4">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_5">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_6">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}hw_hd_003_0001_7">
+            <inertial>
+                <mass value="0.00967451" />
+                <origin xyz="-3.60556e-07 -0.0278834 0.0117231" rpy="0 0 0" />
+                <inertia ixx="5.39541e-06" ixy="-5.52372e-11" ixz="1.45245e-10" iyy="3.71861e-06" iyz="1.76259e-06" izz="1.91383e-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ratchet_handle.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-7.260614e-08 -0.0213942122 0.0260652826" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0165 0.0587868533 0.0686265511" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}imported_panel_4fbaef8c5f30_1122585">
+            <inertial>
+                <mass value="1.22671" />
+                <origin xyz="-0.00316937 -0.135 0.3825" rpy="0 0 0" />
+                <inertia ixx="0.066931" ixy="0" ixz="0" iyy="0.0595081" iyz="0" izz="0.00743119" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/imported_PANEL_4FBAEF8C5F30_1122585.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.301961_0.301961_0.301961_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.301961 0.301961 0.301961 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.00317499996 -0.135000005 0.382499993" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.00634999992 0.27 0.765" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}mo_wl_003_0002_13">
+            <inertial>
+                <mass value="3.18338e-05" />
+                <origin xyz="-4.07754e-11 -1.88352e-09 -0.0026839" rpy="0 0 0" />
+                <inertia ixx="2.38649e-08" ixy="0" ixz="0" iyy="2.38649e-08" iyz="0" izz="4.75994e-08" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/caster.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.910000_0.910000_0.910000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.91 0.91 0.91 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.532659e-06 0.016234229 -0.0520013802" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.122468462 0.104" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}mo_wl_003_0002_20">
+            <inertial>
+                <mass value="3.18338e-05" />
+                <origin xyz="-4.07754e-11 -1.88352e-09 -0.0026839" rpy="0 0 0" />
+                <inertia ixx="2.38649e-08" ixy="0" ixz="0" iyy="2.38649e-08" iyz="0" izz="4.75994e-08" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/caster.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.910000_0.910000_0.910000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.91 0.91 0.91 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.532659e-06 0.016234229 -0.0520013802" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.122468462 0.104" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}mo_wl_003_0002_27">
+            <inertial>
+                <mass value="3.18338e-05" />
+                <origin xyz="-4.07754e-11 -1.88352e-09 -0.0026839" rpy="0 0 0" />
+                <inertia ixx="2.38649e-08" ixy="0" ixz="0" iyy="2.38649e-08" iyz="0" izz="4.75994e-08" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/caster.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.910000_0.910000_0.910000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.91 0.91 0.91 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.532659e-06 0.016234229 -0.0520013802" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.122468462 0.104" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}mo_wl_003_0002_6">
+            <inertial>
+                <mass value="3.18338e-05" />
+                <origin xyz="-4.07754e-11 -1.88352e-09 -0.0026839" rpy="0 0 0" />
+                <inertia ixx="2.38649e-08" ixy="0" ixz="0" iyy="2.38649e-08" iyz="0" izz="4.75994e-08" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/caster.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.910000_0.910000_0.910000_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.91 0.91 0.91 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.532659e-06 0.016234229 -0.0520013802" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.122468462 0.104" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}mucka_target_40">
+            <inertial>
+                <mass value="0.0764813" />
+                <origin xyz="5.06103e-07 3.12933e-07 0.00491323" rpy="0 0 0" />
+                <inertia ixx="1.45888e-05" ixy="-5.16199e-11" ixz="-2.13454e-10" iyy="0.00011885" iyz="-1.70561e-10" izz="0.000132117" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/mucka_target_40.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.262745_0.282353_0.301961_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.262745 0.282353 0.301961 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00549999997" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.135 0.045 0.011" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}nuc">
+            <inertial>
+                <mass value="0.000667471" />
+                <origin xyz="0 0 0.0585" rpy="0 0 0" />
+                <inertia ixx="1.45569e-06" ixy="0" ixz="0" iyy="9.04286e-07" iyz="0" izz="8.40753e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0.1125 -0.0325" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/nuc.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.356863_0.360784_0.376471_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.356863 0.360784 0.376471 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -2.60770321e-09 0.0584999982" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.051 0.112 0.117" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}nuc_bracket">
+            <inertial>
+                <mass value="0.0571694" />
+                <origin xyz="-2.44616e-09 -0.00270804 0.00864409" rpy="0 0 0" />
+                <inertia ixx="7.35307e-05" ixy="-1.63041e-10" ixz="-8.69999e-13" iyy="1.53809e-05" iyz="3.46107e-06" izz="8.08874e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0.1125 -0.0225" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/nuc_bracket.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 2.98023224e-09 0.0200000004" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.062 0.123 0.04" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}franka_base_mount">
+            <inertial>
+                <mass value="1e-06" />
+                <origin xyz="0 0 0.005" rpy="0 0 0" />
+                <inertia ixx="1.66667e-11" ixy="0" ixz="0" iyy="1.66667e-11" iyz="0" izz="1.66667e-11" />
+            </inertial>
+        </link>
+        <link name="${pp}pr_fr_005_0002_1">
+            <inertial>
+                <mass value="0.000307092" />
+                <origin xyz="0 -0.00864078 0.0399377" rpy="0 0 0" />
+                <inertia ixx="2.36636e-07" ixy="0" ixz="0" iyy="2.92494e-07" iyz="4.53301e-10" izz="2.07688e-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 -0.036725 0.036" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/estop.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="0.298039_0.298039_0.298039_0.000000_0.000000">
+                    <texture />
+                    <color rgba="0.298039 0.298039 0.298039 1" />
+                </material>
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.0326749985 0.0400000007" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.072 0.1039 0.08" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}root" />
+        <link name="${pp}router_bracket">
+            <inertial>
+                <mass value="0.0213455" />
+                <origin xyz="0.000213903 0.000249253 0.0157123" rpy="0 0 0" />
+                <inertia ixx="2.03474e-05" ixy="1.61767e-07" ixz="-4.16415e-08" iyy="1.98358e-05" iyz="9.55534e-09" izz="3.01895e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0.032" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/router_bracket.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.000749999657 0 0.0269448612" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.1055 0.10059502 0.0538897254" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0180">
+            <inertial>
+                <mass value="0.369821" />
+                <origin xyz="0 -0.09 0" rpy="0 0 0" />
+                <inertia ixx="0.00107735" ixy="0" ixz="0" iyy="0.000157674" iyz="0" izz="0.00107735" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0180.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.3728472e-06 -0.0900000055 1.3728472e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.18 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0180_1">
+            <inertial>
+                <mass value="0.369821" />
+                <origin xyz="0 -0.09 0" rpy="0 0 0" />
+                <inertia ixx="0.00107735" ixy="0" ixz="0" iyy="0.000157674" iyz="0" izz="0.00107735" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0180.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="1.3728472e-06 -0.0900000055 1.3728472e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.18 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0225">
+            <inertial>
+                <mass value="0.462277" />
+                <origin xyz="0 -0.1125 0" rpy="0 0 0" />
+                <inertia ixx="0.00204878" ixy="0" ixz="0" iyy="0.000197092" iyz="0" izz="0.00204878" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0225.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.74568955e-06 -0.112499995 2.74568955e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.225 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0675">
+            <inertial>
+                <mass value="1.38683" />
+                <origin xyz="0 -0.3375 0" rpy="0 0 0" />
+                <inertia ixx="0.0529518" ixy="0" ixz="0" iyy="0.000591276" iyz="0" izz="0.0529518" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0675.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.12113e-06 -0.337500014 -4.12113e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.675 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0675_1">
+            <inertial>
+                <mass value="1.38683" />
+                <origin xyz="0 -0.3375 0" rpy="0 0 0" />
+                <inertia ixx="0.0529518" ixy="0" ixz="0" iyy="0.000591276" iyz="0" izz="0.0529518" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0675.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.12113e-06 -0.337500014 -4.12113e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.675 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0765">
+            <inertial>
+                <mass value="1.57174" />
+                <origin xyz="0 -0.3825 0" rpy="0 0 0" />
+                <inertia ixx="0.0769869" ixy="0" ixz="0" iyy="0.000670113" iyz="0" izz="0.0769869" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0765.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="6.8648404e-06 -0.382500005 6.8648404e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.765 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0765_1">
+            <inertial>
+                <mass value="1.57174" />
+                <origin xyz="0 -0.3825 0" rpy="0 0 0" />
+                <inertia ixx="0.0769869" ixy="0" ixz="0" iyy="0.000670113" iyz="0" izz="0.0769869" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0765.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="6.8648404e-06 -0.382500005 6.8648404e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.765 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0810">
+            <inertial>
+                <mass value="1.6642" />
+                <origin xyz="0 -0.405 0" rpy="0 0 0" />
+                <inertia ixx="0.0913447" ixy="0" ixz="0" iyy="0.000709531" iyz="0" izz="0.0913447" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0810.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.121767e-06 -0.405000015 -4.121767e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.81 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0810_1">
+            <inertial>
+                <mass value="1.6642" />
+                <origin xyz="0 -0.405 0" rpy="0 0 0" />
+                <inertia ixx="0.0913447" ixy="0" ixz="0" iyy="0.000709531" iyz="0" izz="0.0913447" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0810.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.121767e-06 -0.405000015 -4.121767e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.81 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0810_2">
+            <inertial>
+                <mass value="1.6642" />
+                <origin xyz="0 -0.405 0" rpy="0 0 0" />
+                <inertia ixx="0.0913447" ixy="0" ixz="0" iyy="0.000709531" iyz="0" izz="0.0913447" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0810.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.121767e-06 -0.405000015 -4.121767e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.81 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_001_0810_3">
+            <inertial>
+                <mass value="1.6642" />
+                <origin xyz="0 -0.405 0" rpy="0 0 0" />
+                <inertia ixx="0.0913447" ixy="0" ixz="0" iyy="0.000709531" iyz="0" izz="0.0913447" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_001_0810.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-4.121767e-06 -0.405000015 -4.121767e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.045 0.81 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_002_0045">
+            <inertial>
+                <mass value="0.149294" />
+                <origin xyz="-0.0225 -0.0225 0" rpy="0 0 0" />
+                <inertia ixx="6.0162e-05" ixy="0" ixz="0" iyy="0.000169957" iyz="0" izz="0.000160182" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_002_0045.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0225000021 -0.0224986281 1.37276528e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.045 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_002_0225">
+            <inertial>
+                <mass value="0.74647" />
+                <origin xyz="-0.0225 -0.1125 0" rpy="0 0 0" />
+                <inertia ixx="0.00332401" ixy="0" ixz="0" iyy="0.000849787" iyz="0" izz="0.00382411" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_002_0225.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0225013764 -0.112499995 2.74568955e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.225 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_002_0225_1">
+            <inertial>
+                <mass value="0.74647" />
+                <origin xyz="-0.0225 -0.1125 0" rpy="0 0 0" />
+                <inertia ixx="0.00332401" ixy="0" ixz="0" iyy="0.000849787" iyz="0" izz="0.00382411" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_002_0225.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0225013764 -0.112499995 2.74568955e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.225 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_002_0225_2">
+            <inertial>
+                <mass value="0.74647" />
+                <origin xyz="-0.0225 -0.1125 0" rpy="0 0 0" />
+                <inertia ixx="0.00332401" ixy="0" ixz="0" iyy="0.000849787" iyz="0" izz="0.00382411" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_002_0225.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0225013764 -0.112499995 2.74568955e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.225 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_002_0765">
+            <inertial>
+                <mass value="2.538" />
+                <origin xyz="-0.0225 -0.3825 0" rpy="0 0 0" />
+                <inertia ixx="0.124369" ixy="-2.07755e-15" ixz="0" iyy="0.00288928" iyz="0" izz="0.12607" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_002_0765.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0225096186 -0.382500005 6.8648404e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.765 0.045" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0045">
+            <inertial>
+                <mass value="0.228441" />
+                <origin xyz="9.89383e-09 -0.0225 0" rpy="0 0 0" />
+                <inertia ixx="0.000263295" ixy="0" ixz="0" iyy="0.00044949" iyz="0" izz="0.000263294" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0045.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 -0.0224986281 -1.21915501e-09" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.045 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0045_1">
+            <inertial>
+                <mass value="0.228441" />
+                <origin xyz="9.89383e-09 -0.0225 0" rpy="0 0 0" />
+                <inertia ixx="0.000263295" ixy="0" ixz="0" iyy="0.00044949" iyz="0" izz="0.000263294" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0045.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-1.21915501e-09 -0.0224986281 -1.21915501e-09" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.045 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0360">
+            <inertial>
+                <mass value="1.82753" />
+                <origin xyz="9.8938e-09 -0.18 0" rpy="0 0 0" />
+                <inertia ixx="0.0215353" ixy="1.1326e-15" ixz="-2.19606e-15" iyy="0.00359592" iyz="0" izz="0.0215353" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0360.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.180000012 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.36 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0360_1">
+            <inertial>
+                <mass value="1.82753" />
+                <origin xyz="9.8938e-09 -0.18 0" rpy="0 0 0" />
+                <inertia ixx="0.0215353" ixy="1.1326e-15" ixz="-2.19606e-15" iyy="0.00359592" iyz="0" izz="0.0215353" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0360.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.180000012 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.36 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0360_2">
+            <inertial>
+                <mass value="1.82753" />
+                <origin xyz="9.8938e-09 -0.18 0" rpy="0 0 0" />
+                <inertia ixx="0.0215353" ixy="1.1326e-15" ixz="-2.19606e-15" iyy="0.00359592" iyz="0" izz="0.0215353" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0360.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.180000012 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.36 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0360_3">
+            <inertial>
+                <mass value="1.82753" />
+                <origin xyz="9.8938e-09 -0.18 0" rpy="0 0 0" />
+                <inertia ixx="0.0215353" ixy="1.1326e-15" ixz="-2.19606e-15" iyy="0.00359592" iyz="0" izz="0.0215353" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0360.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.180000012 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.36 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0405">
+            <inertial>
+                <mass value="2.05597" />
+                <origin xyz="9.89383e-09 -0.2025 0" rpy="0 0 0" />
+                <inertia ixx="0.0301252" ixy="0" ixz="-3.67201e-15" iyy="0.00404541" iyz="1.4639e-15" izz="0.0301252" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0405.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="4.11683915e-06 -0.202500008 4.11683915e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.405 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0405_1">
+            <inertial>
+                <mass value="2.05597" />
+                <origin xyz="9.89383e-09 -0.2025 0" rpy="0 0 0" />
+                <inertia ixx="0.0301252" ixy="0" ixz="-3.67201e-15" iyy="0.00404541" iyz="1.4639e-15" izz="0.0301252" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0405.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="4.11683915e-06 -0.202500008 4.11683915e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.405 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0585">
+            <inertial>
+                <mass value="2.96974" />
+                <origin xyz="9.89383e-09 -0.2925 0" rpy="0 0 0" />
+                <inertia ixx="0.0876148" ixy="-1.66653e-15" ixz="-5.30415e-15" iyy="0.00584337" iyz="3.05545e-15" izz="0.0876148" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0585.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-8.244108e-06 -0.292499992 -8.244108e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.585 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0585_1">
+            <inertial>
+                <mass value="2.96974" />
+                <origin xyz="0.0445 0 -0.09" rpy="0 0 0" />
+                <inertia ixx="0.0876148" ixy="-1.66653e-15" ixz="-5.30415e-15" iyy="0.00584337" iyz="3.05545e-15" izz="0.0876148" />
+            </inertial>
+            <visual>
+                <origin xyz="0.0445 0.2925 -0.09" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0585.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0444917559 7.61429997e-09 -0.0900082441" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.585 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0720">
+            <inertial>
+                <mass value="3.65506" />
+                <origin xyz="9.89383e-09 -0.36 0" rpy="0 0 0" />
+                <inertia ixx="0.161494" ixy="-3.55085e-15" ixz="-6.47149e-15" iyy="0.00719184" iyz="1.10848e-14" izz="0.161494" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0720.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.360000025 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.72 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_ext_005_0720_1">
+            <inertial>
+                <mass value="3.65506" />
+                <origin xyz="9.89383e-09 -0.36 0" rpy="0 0 0" />
+                <inertia ixx="0.161494" ixy="-3.55085e-15" ixz="-6.47149e-15" iyy="0.00719184" iyz="1.10848e-14" izz="0.161494" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_EXT_005_0720.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="2.7454896e-06 -0.360000025 2.7454896e-06" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.09 0.72 0.09" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0002">
+            <inertial>
+                <mass value="0.245502" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="0.000159795" ixy="0" ixz="0" iyy="0.000806313" iyz="0" izz="0.000647986" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0002_1">
+            <inertial>
+                <mass value="0.245502" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="0.000159795" ixy="0" ixz="0" iyy="0.000806313" iyz="0" izz="0.000647986" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0002_2">
+            <inertial>
+                <mass value="0.245502" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="0.000159795" ixy="0" ixz="0" iyy="0.000806313" iyz="0" izz="0.000647986" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0002_3">
+            <inertial>
+                <mass value="0.245502" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="0.000159795" ixy="0" ixz="0" iyy="0.000806313" iyz="0" izz="0.000647986" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0002.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0006">
+            <inertial>
+                <mass value="0.369851" />
+                <origin xyz="0.0738708 -0.003 0.0738708" rpy="0 0 0" />
+                <inertia ixx="0.000896279" ixy="0" ixz="0.000329989" iyy="0.00179035" iyz="0" izz="0.000896279" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0006.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0006_1">
+            <inertial>
+                <mass value="0.369851" />
+                <origin xyz="0.0738708 -0.003 0.0738708" rpy="0 0 0" />
+                <inertia ixx="0.000896279" ixy="0" ixz="0.000329989" iyy="0.00179035" iyz="0" izz="0.000896279" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0006.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0006_2">
+            <inertial>
+                <mass value="0.369851" />
+                <origin xyz="0.0738708 -0.003 0.0738708" rpy="0 0 0" />
+                <inertia ixx="0.000896279" ixy="0" ixz="0.000329989" iyy="0.00179035" iyz="0" izz="0.000896279" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0006.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0006_3">
+            <inertial>
+                <mass value="0.369851" />
+                <origin xyz="0.0738708 -0.003 0.0738708" rpy="0 0 0" />
+                <inertia ixx="0.000896279" ixy="0" ixz="0.000329989" iyy="0.00179035" iyz="0" izz="0.000896279" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0006.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0009">
+            <inertial>
+                <mass value="0.217153" />
+                <origin xyz="-0.0560503 -0.003 0.0560503" rpy="0 0 0" />
+                <inertia ixx="0.000274864" ixy="0" ixz="-9.42382e-05" iyy="0.000548428" iyz="0" izz="0.000274864" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0009.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0665000007 -0.00300000003 0.0665000007" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.133" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0009_1">
+            <inertial>
+                <mass value="0.217153" />
+                <origin xyz="-0.0560503 -0.003 0.0560503" rpy="0 0 0" />
+                <inertia ixx="0.000274864" ixy="0" ixz="-9.42382e-05" iyy="0.000548428" iyz="0" izz="0.000274864" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0009.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0665000007 -0.00300000003 0.0665000007" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.133" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0009_2">
+            <inertial>
+                <mass value="0.217153" />
+                <origin xyz="-0.0560503 -0.003 0.0560503" rpy="0 0 0" />
+                <inertia ixx="0.000274864" ixy="0" ixz="-9.42382e-05" iyy="0.000548428" iyz="0" izz="0.000274864" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0009.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0665000007 -0.00300000003 0.0665000007" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.133" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0009_3">
+            <inertial>
+                <mass value="0.217153" />
+                <origin xyz="-0.0560503 -0.003 0.0560503" rpy="0 0 0" />
+                <inertia ixx="0.000274864" ixy="0" ixz="-9.42382e-05" iyy="0.000548428" iyz="0" izz="0.000274864" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0009.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0665000007 -0.00300000003 0.0665000007" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.133" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010_1">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010_2">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010_3">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010_4">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0010_5">
+            <inertial>
+                <mass value="0.436951" />
+                <origin xyz="-0.0807087 -0.003 0.0807087" rpy="0 0 0" />
+                <inertia ixx="0.00104017" ixy="0" ixz="-0.000233136" iyy="0.00207773" iyz="0" izz="0.00104017" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0010.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0890000015 -0.00300000003 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.178 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0013">
+            <inertial>
+                <mass value="0.311611" />
+                <origin xyz="-0.052299 -0.003 0.0558399" rpy="0 0 0" />
+                <inertia ixx="0.000696079" ixy="0" ixz="0.000148339" iyy="0.00111608" iyz="0" izz="0.000421872" />
+            </inertial>
+            <visual>
+                <origin xyz="-0.1115 -0.003 -0.0215" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0013.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0449999993 -0.003 0.0675000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0013_1">
+            <inertial>
+                <mass value="0.311611" />
+                <origin xyz="0.059201 0 0.0773399" rpy="0 0 0" />
+                <inertia ixx="0.000696079" ixy="0" ixz="0.000148339" iyy="0.00111608" iyz="0" izz="0.000421872" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0013.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0665000007 0 0.0890000015" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.133 0.006 0.178" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0014">
+            <inertial>
+                <mass value="0.370552" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000241304" ixy="0" ixz="0" iyy="0.00245483" iyz="0" izz="0.00221575" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0014.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.268 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0014_1">
+            <inertial>
+                <mass value="0.370552" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000241304" ixy="0" ixz="0" iyy="0.00245483" iyz="0" izz="0.00221575" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0014.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.268 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0014_2">
+            <inertial>
+                <mass value="0.370552" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000241304" ixy="0" ixz="0" iyy="0.00245483" iyz="0" izz="0.00221575" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0014.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.268 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0014_3">
+            <inertial>
+                <mass value="0.370552" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000241304" ixy="0" ixz="0" iyy="0.00245483" iyz="0" izz="0.00221575" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0014.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.268 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0016">
+            <inertial>
+                <mass value="0.0589774" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="9.4633e-06" ixy="0" ixz="0" iyy="4.71935e-05" iyz="0" izz="3.80828e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0016.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.006 0.043" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0016_1">
+            <inertial>
+                <mass value="0.0589774" />
+                <origin xyz="0 -0.003 0" rpy="0 0 0" />
+                <inertia ixx="9.4633e-06" ixy="0" ixz="0" iyy="4.71935e-05" iyz="0" izz="3.80828e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0016.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00300000003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.006 0.043" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0019">
+            <inertial>
+                <mass value="0.30826" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000200672" ixy="0" ixz="0" iyy="0.00147523" iyz="0" izz="0.00127641" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0019.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0019_1">
+            <inertial>
+                <mass value="0.30826" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000200672" ixy="0" ixz="0" iyy="0.00147523" iyz="0" izz="0.00127641" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0019.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0019_2">
+            <inertial>
+                <mass value="0.30826" />
+                <origin xyz="0 0.003 0" rpy="0 0 0" />
+                <inertia ixx="0.000200672" ixy="0" ixz="0" iyy="0.00147523" iyz="0" izz="0.00127641" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0.003 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0019.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0.003 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0019_3">
+            <inertial>
+                <mass value="0.30826" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000200672" ixy="0" ixz="0" iyy="0.00147523" iyz="0" izz="0.00127641" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0019.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0019_4">
+            <inertial>
+                <mass value="0.30826" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.000200672" ixy="0" ixz="0" iyy="0.00147523" iyz="0" izz="0.00127641" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0019.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.088" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0020">
+            <inertial>
+                <mass value="0.150345" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="2.42101e-05" ixy="0" ixz="0" iyy="0.000644419" iyz="0" izz="0.00062111" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0020.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.043" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_001_0020_1">
+            <inertial>
+                <mass value="0.150345" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="2.42101e-05" ixy="0" ixz="0" iyy="0.000644419" iyz="0" izz="0.00062111" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_001_0020.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.223 0.006 0.043" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_gp_003_0001">
+            <inertial>
+                <mass value="0.0711939" />
+                <origin xyz="-0.0144305 -0.021 0.0144305" rpy="0 0 0" />
+                <inertia ixx="2.57586e-05" ixy="-1.39955e-14" ixz="-5.98263e-06" iyy="2.30967e-05" iyz="-3.55447e-15" izz="2.57586e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_GP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0219999999 -0.0209999997 0.0219999999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.044 0.042 0.044" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_1">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_10">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_11">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_12">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_13">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_2">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_3">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_4">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_5">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_6">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_7">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_8">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0001_9">
+            <inertial>
+                <mass value="0.0726743" />
+                <origin xyz="-0.0143182 -0.021 0.0143182" rpy="0 0 0" />
+                <inertia ixx="2.59311e-05" ixy="2.25949e-15" ixz="-6.21796e-06" iyy="2.36442e-05" iyz="1.92488e-15" izz="2.59311e-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="-0.0208499999 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0462999998 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0004">
+            <inertial>
+                <mass value="0.366826" />
+                <origin xyz="0.0268611 -0.044 0.0268611" rpy="0 0 0" />
+                <inertia ixx="0.000597273" ixy="-1.59713e-13" ixz="0.000128022" iyy="0.000480661" iyz="5.80425e-13" izz="0.000597273" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0004.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0428499997 -0.0439999998 0.0428499997" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0902999996 0.088 0.0902999996" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0004_1">
+            <inertial>
+                <mass value="0.366826" />
+                <origin xyz="0.0268611 -0.044 0.0268611" rpy="0 0 0" />
+                <inertia ixx="0.000597273" ixy="-1.59713e-13" ixz="0.000128022" iyy="0.000480661" iyz="5.80425e-13" izz="0.000597273" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0004.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0428499997 -0.0439999998 0.0428499997" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0902999996 0.088 0.0902999996" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0004_2">
+            <inertial>
+                <mass value="0.366826" />
+                <origin xyz="0.0268611 -0.044 0.0268611" rpy="0 0 0" />
+                <inertia ixx="0.000597273" ixy="-1.59713e-13" ixz="0.000128022" iyy="0.000480661" iyz="5.80425e-13" izz="0.000597273" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0004.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0428499997 -0.0439999998 0.0428499997" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0902999996 0.088 0.0902999996" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0004_3">
+            <inertial>
+                <mass value="0.366826" />
+                <origin xyz="0.0268611 -0.044 0.0268611" rpy="0 0 0" />
+                <inertia ixx="0.000597273" ixy="-1.59713e-13" ixz="0.000128022" iyy="0.000480661" iyz="5.80425e-13" izz="0.000597273" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0004.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0428499997 -0.0439999998 0.0428499997" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0902999996 0.088 0.0902999996" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0005">
+            <inertial>
+                <mass value="0.123422" />
+                <origin xyz="0.0324601 -0.021 0.0120636" rpy="0 0 0" />
+                <inertia ixx="4.29987e-05" ixy="-5.91436e-15" ixz="1.97252e-05" iyy="0.000104095" iyz="7.02789e-15" izz="0.000112469" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0005.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0433500007 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0913000016 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_hp_003_0005_1">
+            <inertial>
+                <mass value="0.123422" />
+                <origin xyz="0.0324601 -0.021 0.0120636" rpy="0 0 0" />
+                <inertia ixx="4.29987e-05" ixy="-5.91436e-15" ixz="1.97252e-05" iyy="0.000104095" iyz="7.02789e-15" izz="0.000112469" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_HP_003_0005.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0.0433500007 -0.0209999997 0.0208499999" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0913000016 0.042 0.0462999998" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_rb_013_0001">
+            <inertial>
+                <mass value="1.19463" />
+                <origin xyz="6.49829e-09 -0.00167727 0.00559414" rpy="0 0 0" />
+                <inertia ixx="0.00733867" ixy="-1.82394e-10" ixz="-2.1944e-13" iyy="0.00580484" iyz="-5.83634e-07" izz="0.0131183" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_RB_013_0001.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00562500022" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.225 0.255 0.0112500004" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_006_0005__2">
+            <inertial>
+                <mass value="0.312906" />
+                <origin xyz="0 -0.00181982 -0.00579364" rpy="0 0 0" />
+                <inertia ixx="7.44792e-05" ixy="0" ixz="-5.79059e-08" iyy="0.00133937" iyz="-1.52727e-05" izz="0.00128751" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_006_0005__2.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00825000019 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.22225 0.0225 0.044" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_006_0005__2_1">
+            <inertial>
+                <mass value="0.312906" />
+                <origin xyz="0 -0.00181982 -0.00579364" rpy="0 0 0" />
+                <inertia ixx="7.44792e-05" ixy="0" ixz="-5.79059e-08" iyy="0.00133937" iyz="-1.52727e-05" izz="0.00128751" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_006_0005__2.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="dark_gray_plastic" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 -0.00825000019 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.22225 0.0225 0.044" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_010_0003">
+            <inertial>
+                <mass value="0.319175" />
+                <origin xyz="0 0 0.00586598" rpy="0 0 0" />
+                <inertia ixx="0.000445314" ixy="0" ixz="0" iyy="0.000216458" iyz="0" izz="0.000654152" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_010_0003.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00600000005" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.125 0.012" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_010_0003_1">
+            <inertial>
+                <mass value="0.319175" />
+                <origin xyz="0 0 0.00586598" rpy="0 0 0" />
+                <inertia ixx="0.000445314" ixy="0" ixz="0" iyy="0.000216458" iyz="0" izz="0.000654152" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_010_0003.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00600000005" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.125 0.012" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_010_0003_2">
+            <inertial>
+                <mass value="0.319175" />
+                <origin xyz="0 0 0.00586598" rpy="0 0 0" />
+                <inertia ixx="0.000445314" ixy="0" ixz="0" iyy="0.000216458" iyz="0" izz="0.000654152" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_010_0003.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00600000005" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.125 0.012" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="${pp}st_sp_010_0003_3">
+            <inertial>
+                <mass value="0.319175" />
+                <origin xyz="0 0 0.00586598" rpy="0 0 0" />
+                <inertia ixx="0.000445314" ixy="0" ixz="0" iyy="0.000216458" iyz="0" izz="0.000654152" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cortado_description/meshes/vention/ST_SP_010_0003.gltf" scale="1 1 1" />
+                </geometry>
+                <material name="vention_aluminium_blue" />
+            </visual>
+            <collision name="box_collision_1">
+                <origin xyz="0 0 0.00600000005" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.088 0.125 0.012" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${pp}base_fastened_joint_0" type="fixed">
+            <origin xyz="-0.763 -0.096 -0.0915" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010_5" />
+            <child link="${pp}st_gp_001_0010_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_1" type="fixed">
+            <origin xyz="0.675 0.0065 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003" />
+            <child link="${pp}st_sp_010_0003_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_10" type="fixed">
+            <origin xyz="0 0.09 0.359" rpy="0 1.5708 -3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0360" />
+            <child link="${pp}st_gp_001_0002_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_11" type="fixed">
+            <origin xyz="-0.314 -0.1425 -0.405" rpy="3.14159 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_2" />
+            <child link="${pp}st_ext_005_0045" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_12" type="fixed">
+            <origin xyz="0.3855 -0.361011 -0.360004" rpy="0 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0045_1" />
+            <child link="${pp}hw_ec_005_0001" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_13" type="fixed">
+            <origin xyz="-0.2707 0 0.5847" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0004_2" />
+            <child link="${pp}st_hp_003_0004" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_14" type="fixed">
+            <origin xyz="0.224978 0.217 -0.00300842" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_1" />
+            <child link="${pp}hw_hd_003_0001_7" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_15" type="fixed">
+            <origin xyz="-0.009 0.2705 0" rpy="0 -1.5708 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0006_3" />
+            <child link="${pp}st_gp_001_0006" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_16" type="fixed">
+            <origin xyz="-0.227888 0.2735 0.382457" rpy="3.14159 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_ec_005_0001_1" />
+            <child link="${pp}hw_hd_003_0001" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_17" type="fixed">
+            <origin xyz="-0.763 -0.006 -0.0005" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010" />
+            <child link="${pp}st_gp_001_0010_5" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_18" type="fixed">
+            <origin xyz="0.0439749 0.217 0.000289703" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_3" />
+            <child link="${pp}hw_hd_003_0001_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_19" type="fixed">
+            <origin xyz="0.674899 -0.0005 4.68394e-05" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_ec_005_0001" />
+            <child link="${pp}hw_ec_005_0001_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_2" type="fixed">
+            <origin xyz="0.27 -0.407 0.09" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0585" />
+            <child link="${pp}st_gp_001_0014_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_20" type="fixed">
+            <origin xyz="0.0445 -0.2925 0.0905" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0585_1" />
+            <child link="${pp}st_ext_005_0585" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_21" type="fixed">
+            <origin xyz="0 -0.048 -0.048" rpy="-1.5708 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019_4" />
+            <child link="${pp}st_gp_001_0019" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_22" type="fixed">
+            <origin xyz="0 0 -0.2705" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0004_1" />
+            <child link="${pp}st_hp_003_0004_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_23" type="fixed">
+            <origin xyz="0.138 0.1155 0.09" rpy="0 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0014" />
+            <child link="${pp}st_gp_001_0019_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_24" type="fixed">
+            <origin xyz="0 0 -0.047" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0006" />
+            <child link="${pp}st_gp_001_0006_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_25" type="fixed">
+            <origin xyz="0 -0.7205 -0.675" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0720" />
+            <child link="${pp}st_ext_005_0720_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_26" type="fixed">
+            <origin xyz="-0.763 0 0.0001" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010_2" />
+            <child link="${pp}st_gp_001_0010_4" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_27" type="fixed">
+            <origin xyz="-0.18 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0045" />
+            <child link="${pp}st_ext_005_0045_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_28" type="fixed">
+            <origin xyz="-0.763 0 0.001" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010_3" />
+            <child link="${pp}st_gp_001_0010_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_29" type="fixed">
+            <origin xyz="0.000365584 0.217 0.00219448" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_7" />
+            <child link="${pp}hw_hd_003_0001_6" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_3" type="fixed">
+            <origin xyz="-0.045 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001" />
+            <child link="${pp}hw_hd_003_0001_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_30" type="fixed">
+            <origin xyz="-0.675 0.59 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_1" />
+            <child link="${pp}st_sp_010_0003" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_31" type="fixed">
+            <origin xyz="0.585 0 -0.0007" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0002_3" />
+            <child link="${pp}st_gp_001_0002" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_32" type="fixed">
+            <origin xyz="-0.089 0.001 0.366" rpy="3.14159 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010_1" />
+            <child link="${pp}st_gp_001_0006_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_33" type="fixed">
+            <origin xyz="0 0 -0.047" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0006_2" />
+            <child link="${pp}st_gp_001_0006_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_34" type="fixed">
+            <origin xyz="0 0 0.135" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0360_3" />
+            <child link="${pp}st_ext_005_0360_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_35" type="fixed">
+            <origin xyz="0 0 -0.09" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0014_2" />
+            <child link="${pp}st_gp_001_0014" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_36" type="fixed">
+            <origin xyz="0.585 0.001 0.0443" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0002" />
+            <child link="${pp}st_hp_003_0004_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_37" type="fixed">
+            <origin xyz="0.3805 -0.363 -0.1364" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019" />
+            <child link="${pp}st_gp_001_0010_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_38" type="fixed">
+            <origin xyz="0.093 0 0" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0010_4" />
+            <child link="${pp}st_gp_001_0010" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_39" type="fixed">
+            <origin xyz="0.585 0 -0.2705" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0004_3" />
+            <child link="${pp}st_hp_003_0004_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_4" type="fixed">
+            <origin xyz="0.044 0.045 0.089" rpy="-1.5708 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0006_1" />
+            <child link="${pp}st_ext_005_0360_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_40" type="fixed">
+            <origin xyz="0 -0.048 0.228" rpy="1.5708 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019_1" />
+            <child link="${pp}st_gp_001_0019_4" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_41" type="fixed">
+            <origin xyz="0 0 -0.09" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0014_3" />
+            <child link="${pp}st_gp_001_0014_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_42" type="fixed">
+            <origin xyz="0.18 0 0.135" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0360_1" />
+            <child link="${pp}st_ext_005_0360_3" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_43" type="fixed">
+            <origin xyz="0 0.231 0" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0014_1" />
+            <child link="${pp}st_gp_001_0014_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_44" type="fixed">
+            <origin xyz="-0.3667 0.001 0.6297" rpy="0 -1.5708 4.71239" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0004" />
+            <child link="${pp}st_sp_010_0003_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_45" type="fixed">
+            <origin xyz="0 -0.048 0.048" rpy="1.5708 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019_3" />
+            <child link="${pp}st_gp_001_0019_1" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_46" type="fixed">
+            <origin xyz="-0.675 -0.598 0" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_3" />
+            <child link="${pp}st_sp_010_0003_2" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_5" type="fixed">
+            <origin xyz="0.0445 -0.3375 0.2965" rpy="1.5708 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0585_1" />
+            <child link="${pp}st_ext_005_0720" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_6" type="fixed">
+            <origin xyz="-0.18 0 0.135" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0360_2" />
+            <child link="${pp}st_ext_005_0360" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_7" type="fixed">
+            <origin xyz="-0.224634 0.217 -0.00219448" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_6" />
+            <child link="${pp}hw_hd_003_0001_4" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_8" type="fixed">
+            <origin xyz="-0.134826 0.217 -0.134665" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_4" />
+            <child link="${pp}hw_hd_003_0001_5" />
+        </joint>
+        <joint name="${pp}base_fastened_joint_9" type="fixed">
+            <origin xyz="-0.0910029 0 0.137719" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_003_0001_2" />
+            <child link="${pp}hw_hd_003_0001_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_0" type="fixed">
+            <origin xyz="0.045 -0.228 0" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_002_0225_2" />
+            <child link="${pp}st_gp_001_0020_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_1" type="fixed">
+            <origin xyz="0.108008 -0.427497 0.0684145" rpy="0 1.5708 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0405_1" />
+            <child link="${pp}st_ext_001_0225" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_10" type="fixed">
+            <origin xyz="0 -0.135 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_5" />
+            <child link="${pp}st_hp_003_0001_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_11" type="fixed">
+            <origin xyz="-0.0224922 0.0459145 -0.0224974" rpy="-1.5708 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_002_0045" />
+            <child link="${pp}st_ext_005_0405_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_12" type="fixed">
+            <origin xyz="0 0.138 0" rpy="0 1.5708 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_10" />
+            <child link="${pp}st_hp_003_0001_12" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_13" type="fixed">
+            <origin xyz="0 -0.135 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_11" />
+            <child link="${pp}st_hp_003_0001_7" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_14" type="fixed">
+            <origin xyz="0 0.003 0" rpy="0 1.5708 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_12" />
+            <child link="${pp}st_hp_003_0001_4" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_15" type="fixed">
+            <origin xyz="0 -0.0447 0.0225" rpy="0 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0020_1" />
+            <child link="${pp}hw_bp_001_0002_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_16" type="fixed">
+            <origin xyz="0.0675 -0.0125 -0.045" rpy="1.5708 0 -3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_rb_013_0001" />
+            <child link="${pp}st_ext_005_0405" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_17" type="fixed">
+            <origin xyz="0 0.18 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_1" />
+            <child link="${pp}st_hp_003_0001_11" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_18" type="fixed">
+            <origin xyz="0.156613 0.000132519 -0.225353" rpy="3.14159 0 -3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_001_0001__2_0" />
+            <child link="${pp}hw_hd_001_0001__2_0_1" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_19" type="fixed">
+            <origin xyz="-0.119 -0.066 0" rpy="0 1.5708 -3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_bp_001_0002" />
+            <child link="${pp}st_hp_003_0001_5" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_2" type="fixed">
+            <origin xyz="0.09 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0225" />
+            <child link="${pp}st_ext_002_0225" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_20" type="fixed">
+            <origin xyz="-0.09 -0.1205 0.0225" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_002_0225" />
+            <child link="${pp}st_rb_013_0001" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_21" type="fixed">
+            <origin xyz="0 -0.045 -0.09" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_7" />
+            <child link="${pp}st_hp_003_0001_10" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_22" type="fixed">
+            <origin xyz="0 -0.132 0" rpy="0 1.5708 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_4" />
+            <child link="${pp}st_hp_003_0001_13" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_4" type="fixed">
+            <origin xyz="0.1493 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_bp_001_0002_1" />
+            <child link="${pp}hw_bp_001_0002" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_6" type="fixed">
+            <origin xyz="-0.113619 0.433359 -0.0762911" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019_2" />
+            <child link="${pp}hw_hd_001_0001__2_0" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_7" type="fixed">
+            <origin xyz="0.045 -0.003 0" rpy="3.14159 0 -3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0020" />
+            <child link="${pp}st_ext_002_0225_2" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_8" type="fixed">
+            <origin xyz="0.0675 0.0225 -0.111" rpy="-1.5708 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_005_0405" />
+            <child link="${pp}st_gp_001_0020" />
+        </joint>
+        <joint name="${pp}column_fastened_joint_9" type="fixed">
+            <origin xyz="0.0215855 0.0284974 0.0224922" rpy="0 -1.5708 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0019_2" />
+            <child link="${pp}st_ext_002_0045" />
+        </joint>
+        <joint name="${pp}column_joint_0" type="prismatic">
+            <origin xyz="0.095783 0 0" rpy="0 0 -1.5708" />
+            <axis xyz="0 1 0" />
+            <parent link="${pp}st_ext_005_0585_1" />
+            <child link="${pp}st_gp_001_0019_2" />
+            <limit effort="1" velocity="1" lower="-10000" upper="10000" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_0" type="fixed">
+            <origin xyz="-0.00198194 -0.0434611 0.271" rpy="0 1.5708 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0005_1" />
+            <child link="${pp}st_hp_003_0001_3" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_1" type="fixed">
+            <origin xyz="-0.9225 -0.09 0.7425" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0013" />
+            <child link="${pp}imported_panel_4fbaef8c5f30_1122585" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_10" type="fixed">
+            <origin xyz="0.000109399 -0.719666 -0.000949256" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_hd_001_0001__2_0_3" />
+            <child link="${pp}hw_hd_001_0001__2_0_2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_11" type="fixed">
+            <origin xyz="0.002 0.0425 0" rpy="0 -1.5708 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_003_0001" />
+            <child link="${pp}st_hp_003_0001" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_12" type="fixed">
+            <origin xyz="0.8325 -0.1125 0.72" rpy="1.5708 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}imported_panel_4fbaef8c5f30_1122585" />
+            <child link="${pp}st_ext_001_0675" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_13" type="fixed">
+            <origin xyz="0 0.765 0" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0002_2" />
+            <child link="${pp}st_gp_001_0002_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_14" type="fixed">
+            <origin xyz="0.0225 -0.0225 0" rpy="0 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0765" />
+            <child link="${pp}st_ext_001_0810" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_15" type="fixed">
+            <origin xyz="-0.765 0.00198194 0.718461" rpy="1.5708 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_8" />
+            <child link="${pp}st_hp_003_0005_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_16" type="fixed">
+            <origin xyz="-0.003 -0.136 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_3" />
+            <child link="${pp}st_hp_003_0001_6" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_17" type="fixed">
+            <origin xyz="0 -0.042 0.675" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_9" />
+            <child link="${pp}st_hp_003_0001_8" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_18" type="fixed">
+            <origin xyz="0 0.225 0" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}hw_ec_002_0001__2" />
+            <child link="${pp}hw_ec_002_0001__2_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_19" type="fixed">
+            <origin xyz="-0.13742 0.181518 0.741069" rpy="1.5708 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0009_1" />
+            <child link="${pp}hw_hd_001_0001__2_0_3" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_2" type="fixed">
+            <origin xyz="-0.0225 0.0225 -0.135" rpy="3.14159 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0810_3" />
+            <child link="${pp}st_ext_001_0765" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_20" type="fixed">
+            <origin xyz="-0.025 -0.046 -0.5135" rpy="3.14159 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_002_0225_1" />
+            <child link="${pp}st_gp_003_0001" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_21" type="fixed">
+            <origin xyz="-0.0460127 -0.681157 -0.27397" rpy="0 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0016_1" />
+            <child link="${pp}hw_ec_002_0001__2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_22" type="fixed">
+            <origin xyz="0.273989 0.0910438 0.0900294" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0180" />
+            <child link="${pp}st_ext_002_0225_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_23" type="fixed">
+            <origin xyz="0.045 0.7425 -0.8325" rpy="0 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0002_1" />
+            <child link="${pp}st_ext_001_0180_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_24" type="fixed">
+            <origin xyz="-0.177975 -0.0432504 -0.0440415" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0005" />
+            <child link="${pp}st_gp_001_0009_3" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_25" type="fixed">
+            <origin xyz="0 0.0225 -0.7875" rpy="-1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0675_1" />
+            <child link="${pp}st_ext_001_0810_2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_26" type="fixed">
+            <origin xyz="-0.0215113 -0.0059706 0.246544" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0009_2" />
+            <child link="${pp}st_ext_001_0765_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_27" type="fixed">
+            <origin xyz="-0.6975 -0.7875 0" rpy="0 -1.5708 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0810" />
+            <child link="${pp}st_ext_001_0675_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_28" type="fixed">
+            <origin xyz="0 0.001 -0.001" rpy="1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0009_3" />
+            <child link="${pp}st_gp_001_0009" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_29" type="fixed">
+            <origin xyz="-0.09 0.0675 -0.0225" rpy="-1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0013" />
+            <child link="${pp}st_ext_002_0765" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_3" type="fixed">
+            <origin xyz="-0.001 -0.485 -0.00025" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_006_0005__2" />
+            <child link="${pp}st_sp_006_0005__2_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_30" type="fixed">
+            <origin xyz="-0.763 0 0" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0009" />
+            <child link="${pp}st_gp_001_0009_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_31" type="fixed">
+            <origin xyz="-0.0215 -0.766 -0.161" rpy="-1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0810_2" />
+            <child link="${pp}st_gp_001_0013_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_32" type="fixed">
+            <origin xyz="0.044 -0.026 0.0215" rpy="3.14159 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0013_1" />
+            <child link="${pp}st_ext_001_0810_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_33" type="fixed">
+            <origin xyz="0.29647 0.182513 0.726157" rpy="1.5708 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_6" />
+            <child link="${pp}st_gp_001_0016_1" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_34" type="fixed">
+            <origin xyz="-0.675 -0.1345 0" rpy="0 1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001_2" />
+            <child link="${pp}st_hp_003_0001_9" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_35" type="fixed">
+            <origin xyz="-0.1565 -0.854 -0.7485" rpy="-1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0810_1" />
+            <child link="${pp}st_gp_001_0009_2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_36" type="fixed">
+            <origin xyz="0 0 0.675" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_hp_003_0001" />
+            <child link="${pp}st_hp_003_0001_2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_4" type="fixed">
+            <origin xyz="0.0225 0 0" rpy="0 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0765_1" />
+            <child link="${pp}st_gp_001_0016" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_5" type="fixed">
+            <origin xyz="0.720029 -4.37539e-05 1.131e-05" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0180_1" />
+            <child link="${pp}st_ext_001_0180" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_6" type="fixed">
+            <origin xyz="0.0225 0.048 0.65325" rpy="-1.5708 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_006_0005__2_1" />
+            <child link="${pp}st_gp_001_0002_2" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_7" type="fixed">
+            <origin xyz="0.045 -0.0225 -0.7875" rpy="-1.5708 0 -1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_002_0765" />
+            <child link="${pp}st_ext_001_0810_3" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_8" type="fixed">
+            <origin xyz="-0.0460688 0.721779 -0.0225302" rpy="-3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_gp_001_0016" />
+            <child link="${pp}st_hp_003_0005" />
+        </joint>
+        <joint name="${pp}desk_fastened_joint_9" type="fixed">
+            <origin xyz="-0.091 -0.067 -0.5105" rpy="-1.5708 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_ext_001_0675" />
+            <child link="${pp}st_sp_006_0005__2" />
+        </joint>
+        <joint name="${pp}fastened_10_0" type="fixed">
+            <origin xyz="0 0 0.012" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_3" />
+            <child link="${pp}mo_wl_003_0002_6" />
+        </joint>
+        <joint name="${pp}fastened_11_0" type="fixed">
+            <origin xyz="0.028575 -0.0119425 -0.019" rpy="0 1.5708 0" />
+            <axis xyz="1 0 0" />
+            <parent link="${pp}st_sp_006_0005__2_1" />
+            <child link="${pp}fan_control_standard_1" />
+        </joint>
+        <joint name="${pp}fastened_12_0" type="fixed">
+            <origin xyz="-0.0225 -0.405 0" rpy="0 -1.5708 0" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}st_ext_001_0810_3" />
+            <child link="${pp}estop_bracket" />
+        </joint>
+        <joint name="${pp}fastened_13_0" type="fixed">
+            <origin xyz="0 -0.04 0.0285" rpy="-1.5708 0 0" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}estop_bracket" />
+            <child link="${pp}pr_fr_005_0002_1" />
+        </joint>
+        <joint name="${pp}fastened_15_0" type="fixed">
+            <origin xyz="0 -0.405 0.0225" rpy="0 0 0" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}st_ext_001_0810" />
+            <child link="${pp}router_bracket" />
+        </joint>
+        <joint name="${pp}fastened_16_0" type="fixed">
+            <origin xyz="0 0 0.015" rpy="0 0 0" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}router_bracket" />
+            <child link="${pp}gl_inet_ax18000_wireless_router_12" />
+        </joint>
+        <joint name="${pp}fastened_17_0" type="fixed">
+            <origin xyz="-0.0225 -0.72 0.0225" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 -1 0" />
+            <parent link="${pp}st_ext_005_0720" />
+            <child link="${pp}st_gp_001_0013" />
+        </joint>
+        <joint name="${pp}fastened_18_0" type="fixed">
+            <origin xyz="0 0 0.01" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}nuc_bracket" />
+            <child link="${pp}nuc" />
+        </joint>
+        <joint name="${pp}fastened_19_0" type="fixed">
+            <origin xyz="0 0 0.111897" rpy="0 -1.5708 -3.14" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}root" />
+            <child link="${pp}st_ext_005_0585_1" />
+        </joint>
+        <joint name="${pp}fastened_1_0" type="fixed">
+            <origin xyz="0 0.003 0" rpy="-1.5708 0 0" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}st_gp_001_0020_1" />
+            <child link="${pp}mucka_target_40" />
+        </joint>
+        <joint name="${pp}fastened_20_0" type="fixed">
+            <origin xyz="0 -0.1125 0.0225" rpy="0 0 3.14159" />
+            <axis xyz="0 0 -1" />
+            <parent link="${pp}st_ext_002_0225_1" />
+            <child link="${pp}nuc_bracket" />
+        </joint>
+        <xacro:if value="${int(camera_mast) >= 1}">
+        <joint name="${pp}camera_corner_mount_to_camera_mast_joint" type="fixed">
+            <origin xyz="0.0074 0.00236575 0.0427144" rpy="3.14159 0 0" />
+            <axis xyz="-1 0 0" />
+            <parent link="${pp}camera_corner_mount" />
+            <child link="${pp}camera_mast" />
+        </joint>
+        </xacro:if>
+        <xacro:if value="${int(camera_mast) >= 2}">
+        <joint name="${pp}camera_mast_to_camera_mast_extension_joint" type="fixed">
+            <origin xyz="0.355 0 0" rpy="0 0 0" />
+            <axis xyz="-1 0 0" />
+            <parent link="${pp}camera_mast" />
+            <child link="${pp}camera_mast_extension" />
+        </joint>
+        </xacro:if>
+        <joint name="${pp}cart_to_franka_base_mount_joint" type="fixed">
+            <origin xyz="0 0.041 0.01125" rpy="0 0 1.5708" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_rb_013_0001" />
+            <child link="${pp}franka_base_mount" />
+        </joint>
+        <joint name="${pp}fastened_4_0" type="fixed">
+            <origin xyz="-0.00635 -0.2025 0.7425" rpy="-1.5708 0 3.14159" />
+            <axis xyz="-1 0 0" />
+            <parent link="${pp}imported_panel_4fbaef8c5f30_1122585" />
+            <child link="${pp}camera_corner_mount" />
+        </joint>
+        <joint name="${pp}fastened_7_0" type="fixed">
+            <origin xyz="0 0 0.012" rpy="3.14159 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_2" />
+            <child link="${pp}mo_wl_003_0002_20" />
+        </joint>
+        <joint name="${pp}fastened_8_0" type="fixed">
+            <origin xyz="0 0 0.012" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003" />
+            <child link="${pp}mo_wl_003_0002_13" />
+        </joint>
+        <joint name="${pp}fastened_9_0" type="fixed">
+            <origin xyz="0 0 0.012" rpy="3.14159 0 3.14159" />
+            <axis xyz="0 0 1" />
+            <parent link="${pp}st_sp_010_0003_1" />
+            <child link="${pp}mo_wl_003_0002_27" />
+        </joint>
+    </xacro:macro>
+</robot>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cortado_srdf">
+  <xacro:include filename="fr3_robotiq_2f_85.srdf.xacro" />
+
+  <xacro:macro name="cortado_srdf" params="prefix:=''">
+    <xacro:fr3_robotiq_2f_85_srdf prefix="${prefix}" />
+  </xacro:macro>
+</robot>

@@ -6,7 +6,7 @@
   <xacro:arg name="wrist_camera" default="true" />
   <xacro:arg name="flip_gripper" default="true" />
 
-  <xacro:include filename="../urdf/fr3_robotiq_2f_85.urdf.xacro" />
+  <xacro:include filename="common/fr3_robotiq_2f_85.xacro" />
 
   <xacro:fr3_robotiq_2f_85
     prefix="$(arg prefix)"

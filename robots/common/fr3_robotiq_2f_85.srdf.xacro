@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3_robotiq_srdf">
+  <xacro:macro name="fr3_robotiq_2f_85_srdf" params="prefix:=''">
+  <xacro:property name="pp" value="${prefix + '_' if prefix else ''}" />
+	<group name="arm">
+		<chain base_link="${pp}fr3_link0" tip_link="${pp}fr3_link7"></chain>
+	</group>
+	<group name="gripper">
+		<joint name="${pp}finger_joint"></joint>
+		<joint name="${pp}right_finger_joint"></joint>
+		<joint name="${pp}left_proximal_phalanx_joint"></joint>
+		<joint name="${pp}left_distal_phalanx_joint"></joint>
+		<joint name="${pp}right_proximal_phalanx_joint"></joint>
+		<joint name="${pp}right_distal_phalanx_joint"></joint>
+	</group>
+	<end_effector name="gripper" parent_link="${pp}fr3_link7" group="gripper" parent_group="arm"></end_effector>
+	<group_state name="open" group="gripper">
+		<joint name="${pp}finger_joint" value="0"/>
+		<joint name="${pp}right_finger_joint" value="0"/>
+		<joint name="${pp}left_proximal_phalanx_joint" value="0"/>
+		<joint name="${pp}left_distal_phalanx_joint" value="0"/>
+		<joint name="${pp}right_proximal_phalanx_joint" value="0"/>
+		<joint name="${pp}right_distal_phalanx_joint" value="0"/>
+	</group_state>
+	<group_state name="close" group="gripper">
+		<joint name="${pp}finger_joint" value="0.8"/>
+		<joint name="${pp}right_finger_joint" value="0.8"/>
+		<joint name="${pp}left_proximal_phalanx_joint" value="0.8"/>
+		<joint name="${pp}left_distal_phalanx_joint" value="-0.8"/>
+		<joint name="${pp}right_proximal_phalanx_joint" value="0.8"/>
+		<joint name="${pp}right_distal_phalanx_joint" value="-0.8"/>
+	</group_state>
+	<passive_joint name="${pp}right_finger_joint"/>
+	<passive_joint name="${pp}left_proximal_phalanx_joint"/>
+	<passive_joint name="${pp}left_distal_phalanx_joint"/>
+	<passive_joint name="${pp}right_proximal_phalanx_joint"/>
+	<passive_joint name="${pp}right_distal_phalanx_joint"/>
+	<group_state name="rest" group="arm">
+		<joint name="${pp}fr3_joint1" value="0"></joint>
+		<joint name="${pp}fr3_joint2" value="-0.785"></joint>
+		<joint name="${pp}fr3_joint3" value="0"></joint>
+		<joint name="${pp}fr3_joint4" value="-2.356"></joint>
+		<joint name="${pp}fr3_joint5" value="0"></joint>
+		<joint name="${pp}fr3_joint6" value="1.57"></joint>
+		<joint name="${pp}fr3_joint7" value="0.785"></joint>
+	</group_state>
+		<link_sphere_approximation link="${pp}camera_mount_link">
+		<sphere center="0.039202526896983385 -0.05664421108818054 0.006754944545924664" radius="0.030751"></sphere>
+		<sphere center="0.04574152689698338 -0.013338211088180542 0.008965944545924663" radius="0.030883"></sphere>
+		<sphere center="0.009932526896983384 -0.02401221108818054 0.0034129445459246633" radius="0.024972"></sphere>
+		<sphere center="0.013570526896983385 0.007986788911819458 0.003842944545924663" radius="0.025692"></sphere>
+		<sphere center="0.050547526896983386 0.03155378891181946 0.012356944545924663" radius="0.029603"></sphere>
+		<sphere center="0.028191526896983385 0.040715788911819456 0.005482944545924663" radius="0.026851"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}coupling_link">
+		<sphere center="0.000833 -0.00153 0.006500000000000001" radius="0.038937"></sphere>
+		<sphere center="-0.001087 0.002026 0.006500000000000001" radius="0.038903"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link0">
+		<sphere center="-0.012898551136139233 -0.0012041360684210938 0.06767921685539421" radius="0.11959"></sphere>
+		<sphere center="-0.08394655113613923 0.0038248639315789064 0.04058421685539422" radius="0.095099"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link1">
+		<sphere center="0.0002572757452726364 0.00036496158409118906 -0.1395377861636877" radius="0.076596"></sphere>
+		<sphere center="-0.0002227242547273636 -0.05429003841590881 0.0004042138363122977" radius="0.077209"></sphere>
+		<sphere center="0.0021852757452726366 -0.032367038415908815 -0.07320478616368771" radius="0.063841"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link2">
+		<sphere center="-7.967482554912565e-05 -0.1406295683530569 9.098027944565157e-05" radius="0.077488"></sphere>
+		<sphere center="-0.00026767482554912567 0.001074431646943097 0.05372298027944565" radius="0.076821"></sphere>
+		<sphere center="0.0007943251744508743 -0.0700565683530569 0.033332980279445645" radius="0.066385"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link3">
+		<sphere center="0.0817192061868906 0.04999125277674198 -0.0006158697187900533" radius="0.073987"></sphere>
+		<sphere center="-7.579381310939687e-05 -4.9747223258019e-05 -0.07296486971879006" radius="0.07524"></sphere>
+		<sphere center="0.0844382061868906 0.04995425277674198 -0.0028928697187900546" radius="0.073593"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link4">
+		<sphere center="-0.08238568919563294 0.07380342906057835 -4.176488816737961e-05" radius="0.07549"></sphere>
+		<sphere center="0.0001553108043670648 -7.557093942165555e-05 0.05122723511183262" radius="0.075359"></sphere>
+		<sphere center="-0.029963689195632935 0.028071429060578346 0.038232235111832616" radius="0.059613"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link5">
+		<sphere center="-0.0006691865881681442 0.06729305760097504 -0.0007817777594327918" radius="0.070057"></sphere>
+		<sphere center="0.0016018134118318558 0.09132705760097504 -0.0653307777594328" radius="0.042539"></sphere>
+		<sphere center="-0.004269186588168144 0.08577005760097503 -0.1172637777594328" radius="0.041593"></sphere>
+		<sphere center="0.0038638134118318557 0.06217705760097504 -0.1763297777594328" radius="0.051406"></sphere>
+		<sphere center="0.0019228134118318557 0.019822057600975038 -0.21132477775943279" radius="0.068246"></sphere>
+		<sphere center="0.013961813411831855 -0.004169942399024962 -0.2212877777594328" radius="0.057846"></sphere>
+		<sphere center="-0.005586186588168144 -0.017641942399024967 -0.22617277775943279" radius="0.049539"></sphere>
+		<sphere center="-0.015807186588168144 0.0018960576009750332 -0.2218607777594328" radius="0.055262"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link6">
+		<sphere center="0.08827046159858867 0.011641558537354907 -0.0008423614391271034" radius="0.082985"></sphere>
+		<sphere center="0.01666146159858868 0.0057495585373549055 0.0174136385608729" radius="0.077629"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}fr3_link7">
+		<sphere center="-0.0003726564257144939 0.00020429181444645006 0.07766310432720185" radius="0.054954"></sphere>
+		<sphere center="0.040419343574285505 0.04041029181444645 0.07920710432720185" radius="0.042032"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}left_bar">
+		<sphere center="0.0011780001698732377 -0.0020526182922124864 0.00716324383094907" radius="0.020004"></sphere>
+		<sphere center="-9.599983012676239e-05 0.006541381707787514 0.041292243830949066" radius="0.017288"></sphere>
+		<sphere center="-0.0011669998301267624 0.0026373817077875138 0.025776243830949067" radius="0.018011"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}left_distal_phalanx">
+		<sphere center="-1.1993050000000016e-05 -0.00845061973 0.00594344911" radius="0.018498"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}left_finger_tip">
+		<sphere center="-0.00061490645 -0.00492153073 0.008935460672300001" radius="0.016398"></sphere>
+		<sphere center="0.00458909355 -0.00822653073 0.0267894606723" radius="0.013001"></sphere>
+		<sphere center="-0.0038049064499999998 -0.008512530729999999 0.028325460672300004" radius="0.012043"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}left_outer_knuckle">
+		<sphere center="0.00018108125028014184 0.003898795893400907 -2.775354593992233e-05" radius="0.012377"></sphere>
+		<sphere center="3.0812502801418303e-06 0.015979795893400907 -0.0010317535459399224" radius="0.011259"></sphere>
+		<sphere center="-9.187497198581696e-07 0.02897779589340091 -0.0046787535459399225" radius="0.009571"></sphere>
+		<sphere center="1.0812502801418304e-06 0.023130795893400908 0.0037642464540600775" radius="0.010201"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}left_proximal_phalanx">
+		<sphere center="0.007604 0.004102160876661539 0.0036879582714438447" radius="0.015432"></sphere>
+		<sphere center="-0.00982 0.006561160876661538 0.005897958271443843" radius="0.016101"></sphere>
+		<sphere center="0.009524 0.023420160876661537 0.021055958271443843" radius="0.016899"></sphere>
+		<sphere center="-0.010058 0.027902160876661537 0.025083958271443843" radius="0.016815"></sphere>
+		<sphere center="0.000895 0.039960160876661543 0.03597595827144384" radius="0.016468"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}right_bar">
+		<sphere center="0.0011780001698732377 -0.0020526182922124864 0.00716324383094907" radius="0.020004"></sphere>
+		<sphere center="-9.599983012676239e-05 0.006541381707787514 0.041292243830949066" radius="0.017288"></sphere>
+		<sphere center="-0.0011669998301267624 0.0026373817077875138 0.025776243830949067" radius="0.018011"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}right_distal_phalanx">
+		<sphere center="-1.1993050000000016e-05 -0.00845061973 0.00594344911" radius="0.018498"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}right_finger_tip">
+		<sphere center="-0.00061490645 -0.00492153073 0.008935460672300001" radius="0.016398"></sphere>
+		<sphere center="0.00458909355 -0.00822653073 0.0267894606723" radius="0.013001"></sphere>
+		<sphere center="-0.0038049064499999998 -0.008512530729999999 0.028325460672300004" radius="0.012043"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}right_outer_knuckle">
+		<sphere center="0.00018108125028014184 0.003898795893400907 -2.775354593992233e-05" radius="0.012377"></sphere>
+		<sphere center="3.0812502801418303e-06 0.015979795893400907 -0.0010317535459399224" radius="0.011259"></sphere>
+		<sphere center="-9.187497198581696e-07 0.02897779589340091 -0.0046787535459399225" radius="0.009571"></sphere>
+		<sphere center="1.0812502801418304e-06 0.023130795893400908 0.0037642464540600775" radius="0.010201"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}right_proximal_phalanx">
+		<sphere center="0.007604 0.004102160876661539 0.0036879582714438447" radius="0.015432"></sphere>
+		<sphere center="-0.00982 0.006561160876661538 0.005897958271443843" radius="0.016101"></sphere>
+		<sphere center="0.009524 0.023420160876661537 0.021055958271443843" radius="0.016899"></sphere>
+		<sphere center="-0.010058 0.027902160876661537 0.025083958271443843" radius="0.016815"></sphere>
+		<sphere center="0.000895 0.039960160876661543 0.03597595827144384" radius="0.016468"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}robotiq_arg2f_base_link">
+		<sphere center="-1.862645149230957e-08 -2.998137354850769e-06 0.039316053919665514" radius="0.053136"></sphere>
+	</link_sphere_approximation>
+	<link_sphere_approximation link="${pp}zedm_camera_center">
+		<sphere center="0.004281600059466961 -0.032332487047699185 -0.00011384890947532822" radius="0.022016"></sphere>
+		<sphere center="0.004200600059466961 0.028166512952300812 -0.0003178489094753282" radius="0.023669"></sphere>
+	</link_sphere_approximation>
+
+	  <disable_collisions link1="${pp}base" link2="${pp}fr3_link0" reason="Adjacent"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link1" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link2" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link3" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link4" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link7" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}fr3_link8" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}left_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}left_pad" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}left_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}robotiq_arg2f_base_link" reason="Never"/>
+  <disable_collisions link1="${pp}base" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}camera_mount_link" link2="${pp}zedm_camera_center" reason="Adjacent"/>
+  <disable_collisions link1="${pp}coupling_link" link2="${pp}camera_mount_link" reason="Always"/>
+  <disable_collisions link1="${pp}coupling_link" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link0" link2="${pp}fr3_link1" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link0" link2="${pp}fr3_link2" reason="Default"/>
+  <disable_collisions link1="${pp}fr3_link1" link2="${pp}fr3_link2" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link2" link2="${pp}fr3_link3" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link2" link2="${pp}fr3_link4" reason="Default"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}fr3_link4" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}fr3_link5" reason="Default"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}fr3_link6" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}fr3_link7" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}fr3_link8" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}left_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link3" link2="${pp}robotiq_arg2f_base_link" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}fr3_link5" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}fr3_link6" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}fr3_link7" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}fr3_link8" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}left_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link4" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}fr3_link6" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}fr3_link7" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}fr3_link8" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link5" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}fr3_link7" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}fr3_link8" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}left_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}left_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}left_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link6" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}camera_mount_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}coupling_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}fr3_link8" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}left_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}left_outer_knuckle" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}left_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}right_bar" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}right_outer_knuckle" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}fr3_link7" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}left_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}left_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}left_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}left_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}fr3_link8" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}left_distal_phalanx" reason="Adjacent"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}left_finger_tip" reason="Always"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}left_outer_knuckle" reason="Adjacent"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}left_pad" reason="Always"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}left_bar" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}left_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}left_pad" reason="Adjacent"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}right_distal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}right_pad" reason="Always"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}left_distal_phalanx" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}left_finger_tip" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}left_pad" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}right_distal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}right_proximal_phalanx" reason="Never"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}left_outer_knuckle" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}left_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}right_distal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}right_pad" reason="Always"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}left_pad" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}right_bar" reason="Never"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}right_distal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}right_pad" reason="Always"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}left_proximal_phalanx" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}right_distal_phalanx" reason="Adjacent"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}right_finger_tip" reason="Always"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}right_outer_knuckle" reason="Adjacent"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}right_pad" reason="Always"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}right_bar" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}right_distal_phalanx" link2="${pp}right_outer_knuckle" reason="Never"/>
+  <disable_collisions link1="${pp}right_distal_phalanx" link2="${pp}right_pad" reason="Adjacent"/>
+  <disable_collisions link1="${pp}right_distal_phalanx" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}right_distal_phalanx" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}right_distal_phalanx" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}right_finger_tip" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}right_outer_knuckle" link2="${pp}right_pad" reason="Never"/>
+  <disable_collisions link1="${pp}right_outer_knuckle" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}right_outer_knuckle" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}right_outer_knuckle" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}right_pad" link2="${pp}right_proximal_phalanx" reason="Always"/>
+  <disable_collisions link1="${pp}right_pad" link2="${pp}robotiq_arg2f_base_link" reason="Always"/>
+  <disable_collisions link1="${pp}right_pad" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}right_proximal_phalanx" link2="${pp}robotiq_arg2f_base_link" reason="Adjacent"/>
+  <disable_collisions link1="${pp}right_proximal_phalanx" link2="${pp}robotiq_arg2f_tcp" reason="Never"/>
+  <disable_collisions link1="${pp}robotiq_arg2f_base_link" link2="${pp}robotiq_arg2f_tcp" reason="Adjacent"/>
+  </xacro:macro>
+</robot>

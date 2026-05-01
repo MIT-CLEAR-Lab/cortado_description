@@ -7,7 +7,7 @@
   <xacro:arg name="wrist_camera" default="true" />
   <xacro:arg name="flip_gripper" default="true" />
 
-  <xacro:include filename="../urdf/cortado.urdf.xacro" />
+  <xacro:include filename="common/cortado.xacro" />
 
   <xacro:cortado
     prefix="$(arg prefix)"

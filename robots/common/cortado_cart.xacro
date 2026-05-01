@@ -35,16 +35,16 @@
                 <inertia ixx="1.86872e-05" ixy="0" ixz="0" iyy="0.0026139" iyz="0" izz="0.0026139" />
             </inertial>
             <visual>
-                <origin xyz="-0.036 0.200134 0.00244588" rpy="0 0 0" />
+                <origin xyz="0.175 0 0" rpy="0 1.5708 0" />
                 <geometry>
-                    <mesh filename="package://cortado_description/meshes/camera_mast.gltf" scale="1 1 1" />
+                    <cylinder radius="0.014075" length="0.35" />
                 </geometry>
                 <material name="dark_gray_plastic" />
             </visual>
-            <collision name="box_collision_1">
-                <origin xyz="0.1775 0 0" rpy="0 0 0" />
+            <collision name="cylinder_collision_1">
+                <origin xyz="0.175 0 0" rpy="0 1.5708 0" />
                 <geometry>
-                    <box size="0.355 0.057 0.057" />
+                    <cylinder radius="0.014075" length="0.35" />
                 </geometry>
             </collision>
         </link>
@@ -57,16 +57,16 @@
                 <inertia ixx="4.69674e-06" ixy="0" ixz="0" iyy="0.00170709" iyz="0" izz="0.00170709" />
             </inertial>
             <visual>
-                <origin xyz="-0.391 0.200134 0.00244588" rpy="0 0 0" />
+                <origin xyz="0.175 0 0" rpy="0 1.5708 0" />
                 <geometry>
-                    <mesh filename="package://cortado_description/meshes/camera_mast_extension.gltf" scale="1 1 1" />
+                    <cylinder radius="0.014075" length="0.35" />
                 </geometry>
                 <material name="dark_gray_plastic" />
             </visual>
-            <collision name="box_collision_1">
-                <origin xyz="0.175 0 0" rpy="0 0 0" />
+            <collision name="cylinder_collision_1">
+                <origin xyz="0.175 0 0" rpy="0 1.5708 0" />
                 <geometry>
-                    <box size="0.35 0.015 0.015" />
+                    <cylinder radius="0.014075" length="0.35" />
                 </geometry>
             </collision>
         </link>
@@ -3240,7 +3240,7 @@
         </xacro:if>
         <xacro:if value="${int(camera_mast) >= 2}">
         <joint name="${pp}camera_mast_to_camera_mast_extension_joint" type="fixed">
-            <origin xyz="0.355 0 0" rpy="0 0 0" />
+            <origin xyz="0.35 0 0" rpy="0 0 0" />
             <axis xyz="-1 0 0" />
             <parent link="${pp}camera_mast" />
             <child link="${pp}camera_mast_extension" />
